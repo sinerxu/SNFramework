@@ -1,0 +1,18 @@
+SNFramework：
+controlers：
+    activitys：
+    fragments：
+    injects：
+models：
+managers：
+    app：
+    async：
+    common：
+    element：
+    model：
+greendao：
+    generator：
+    mapping：
+cores：
+    configs：
+    constants：

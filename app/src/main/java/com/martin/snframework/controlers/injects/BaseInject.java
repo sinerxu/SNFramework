@@ -1,0 +1,13 @@
+package com.martin.snframework.controlers.injects;
+
+import com.sn.main.SNElement;
+import com.sn.models.SNAdapterViewInject;
+
+/**
+ * Created by xuhui on 16/1/20.
+ */
+public class BaseInject extends SNAdapterViewInject {
+    public BaseInject(SNElement _v) {
+        super(_v);
+    }
+}
