@@ -7,6 +7,8 @@ import com.martin.snframework.models.UserModel;
 import com.sn.annotation.SNInjectElement;
 import com.sn.main.SNElement;
 
+import java.util.HashMap;
+
 public class MainActivity extends BaseActivity {
 
     @SNInjectElement(id = R.id.tvUserName)
@@ -20,11 +22,14 @@ public class MainActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         $.contentView(R.layout.activity_main, this);
-
-
-        UserModel userModel = new UserModel($, "徐辉", 24);
+        UserModel userModel = new UserModel($);
+        userModel.fromJson("{\"m\":\"Martin Xu\",\"a\":24}");
         tvUserName.text(userModel.getName());
         tvAge.text(userModel.getShowAge());
         tvIntroduce.text(userModel.getInfo());
+        HashMap<String, String> bodys = userModel.toBody();
+        for (String key : bodys.keySet()) {
+            $.util.logInfo(MainActivity.class, $.util.strFormat("key={0},value={1}", key, bodys.get(key)));
+        }
     }
 }

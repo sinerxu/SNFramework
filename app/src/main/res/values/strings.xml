@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NameQuery</string>
+    <string name="app_name">SNFramework</string>
     <string name="alert_title">提示：</string>
     <string name="alert_ok">确认</string>
     <string name="confirm_title">确认提示：</string>

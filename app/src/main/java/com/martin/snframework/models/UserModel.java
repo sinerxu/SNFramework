@@ -1,5 +1,7 @@
 package com.martin.snframework.models;
 
+import com.martin.snframework.annotation.ApiMapping;
+import com.martin.snframework.annotation.BodyMapping;
 import com.sn.main.SNManager;
 
 /**
@@ -14,7 +16,15 @@ public class UserModel extends BaseModel {
         setAge(_age);
     }
 
+    public UserModel(SNManager _$) {
+        super(_$);
+    }
+
+    @BodyMapping("test_name")
+    @ApiMapping("n,m")
     String name;
+    @BodyMapping("test_age")
+    @ApiMapping("a")
     int age;
 
 

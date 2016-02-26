@@ -10,4 +10,6 @@ public class BaseInject extends SNAdapterViewInject {
     public BaseInject(SNElement _v) {
         super(_v);
     }
+
+
 }
