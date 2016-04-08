@@ -1,9 +1,35 @@
 package com.martin.snframework.controlers.fragments;
 
 import com.sn.fragment.SNLazyFragment;
+import com.sn.interfaces.SNLazyFragmentSetElementListener;
+import com.sn.main.SNElement;
 
 /**
  * Created by xuhui on 16/1/20.
  */
 public class BaseFragment extends SNLazyFragment {
+
+    public boolean onAnimated() {
+        return false;
+    }
+
+    public int onLayout() {
+        return 0;
+    }
+
+    public void onLoadElement(SNElement snElement) {
+
+    }
+
+    @Override
+    public final void onCreateElement() {
+        super.onCreateElement();
+        this.setMainElement(onLayout(), onAnimated(), new SNLazyFragmentSetElementListener() {
+            @Override
+            public void onFinish(SNElement snElement) {
+                $.inject(BaseFragment.this);
+                BaseFragment.this.onLoadElement(snElement);
+            }
+        });
+    }
 }
