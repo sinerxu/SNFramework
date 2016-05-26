@@ -1,0 +1,26 @@
+<com.martin.snframework.widgets.tab.XMTab xmlns:android="http://schemas.android.com/apk/res/android"
+
+    style="@style/SNTabStyle">
+
+    <com.martin.snframework.widgets.tab.XMTabItemBox
+        android:id="@+id/tabItemBox"
+        style="@style/SNTabItemBoxStyle"
+        android:layout_height="48dp">
+
+        <com.martin.snframework.widgets.tab.XMTabItemHover
+            android:id="@+id/tabItemHover"
+            style="@style/SizeWrapStyle"
+            android:alpha="1">
+
+        </com.martin.snframework.widgets.tab.XMTabItemHover>
+
+    </com.martin.snframework.widgets.tab.XMTabItemBox>
+
+    <com.martin.snframework.widgets.tab.XMTabContainer
+        android:id="@+id/tabContainer"
+        style="@style/SNTabContentStyle"
+        android:layout_marginTop="48dp">
+
+    </com.martin.snframework.widgets.tab.XMTabContainer>
+
+</com.martin.snframework.widgets.tab.XMTab>

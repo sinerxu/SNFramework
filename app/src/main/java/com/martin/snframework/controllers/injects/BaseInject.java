@@ -1,4 +1,4 @@
-package com.martin.snframework.controlers.injects;
+package com.martin.snframework.controllers.injects;
 
 import com.sn.main.SNElement;
 import com.sn.models.SNAdapterViewInject;

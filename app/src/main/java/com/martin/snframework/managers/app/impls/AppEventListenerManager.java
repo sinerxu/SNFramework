@@ -1,5 +1,7 @@
 package com.martin.snframework.managers.app.impls;
 
+import android.content.Intent;
+
 import com.martin.snframework.managers.BaseManager;
 import com.martin.snframework.managers.app.interfaces.IAppEventListenerManager;
 import com.sn.interfaces.SNAppEventListener;
@@ -43,8 +45,8 @@ public class AppEventListenerManager extends BaseManager implements IAppEventLis
      * @return
      */
     @Override
-    public void fire(String key, HashMap<String, Object> args) {
-        fire(key, args, false);
+    public void fire(String key, Intent intent) {
+        fire(key, intent, false);
     }
 
     /**
@@ -62,12 +64,12 @@ public class AppEventListenerManager extends BaseManager implements IAppEventLis
      * 执行
      *
      * @param key
-     * @param args
+     * @param intent
      * @param isRemove @return
      */
     @Override
-    public void fire(String key, HashMap<String, Object> args, boolean isRemove) {
-        $.fireAppEventListener(key, args, isRemove);
+    public void fire(String key, Intent intent, boolean isRemove) {
+        $.fireAppEventListener(key, intent, isRemove);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.martin.snframework.controlers.activitys;
+package com.martin.snframework.controllers.activitys;
 
 import android.annotation.TargetApi;
 import android.content.Intent;

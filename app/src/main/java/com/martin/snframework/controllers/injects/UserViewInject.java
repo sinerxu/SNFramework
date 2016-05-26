@@ -1,7 +1,6 @@
-package com.martin.snframework.controlers.injects;
+package com.martin.snframework.controllers.injects;
 
 import com.martin.snframework.R;
-import com.martin.snframework.models.UserModel;
 import com.sn.annotation.SNInjectElement;
 import com.sn.main.SNElement;
 
@@ -22,8 +21,8 @@ public class UserViewInject extends BaseInject {
     @Override
     public void onInjectUI() {
         super.onInjectUI();
-        UserModel userModel = getData(UserModel.class);
-        tvName.text(userModel.getName());
-        tvDesp.text(userModel.getInfo());
+        String action = getData(String.class);
+        tvName.text(action);
+        //tvDesp.text(userModel.getInfo());
     }
 }

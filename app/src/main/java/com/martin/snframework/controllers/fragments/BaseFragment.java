@@ -1,4 +1,4 @@
-package com.martin.snframework.controlers.fragments;
+package com.martin.snframework.controllers.fragments;
 
 import com.sn.fragment.SNLazyFragment;
 import com.sn.interfaces.SNLazyFragmentSetElementListener;

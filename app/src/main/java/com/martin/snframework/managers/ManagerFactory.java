@@ -6,6 +6,8 @@ import com.martin.snframework.managers.app.impls.JavaScriptManager;
 import com.martin.snframework.managers.app.interfaces.IAppEventListenerManager;
 import com.martin.snframework.managers.app.interfaces.IAppManager;
 import com.martin.snframework.managers.app.interfaces.IJavaScriptManager;
+import com.martin.snframework.managers.main.impls.TopicManager;
+import com.martin.snframework.managers.main.interfaces.ITopicManager;
 import com.sn.main.SNManager;
 
 /**
@@ -27,6 +29,10 @@ public class ManagerFactory {
 
     public IAppEventListenerManager createAppEventListenerManager() {
         return new AppEventListenerManager($);
+    }
+
+    public ITopicManager createTopicManager() {
+        return new TopicManager($);
     }
 
     public IJavaScriptManager createJavaScriptManager() {

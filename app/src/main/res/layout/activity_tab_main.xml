@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.martin.snframework.widgets.tab.XMTabBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:style="customer">
+
+        <com.martin.snframework.widgets.tab.XMTabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Kitchen"
+            android:textColor="#f5c8ba"
+            app:fragment="TabKitChenFragment"
+            app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
+
+        <com.martin.snframework.widgets.tab.XMTabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="My Cart"
+            android:textColor="#f5c8ba"
+            app:fragment="TabMyCartFragment"
+            app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
+
+        <com.martin.snframework.widgets.tab.XMTabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Home"
+            android:textColor="#f5c8ba"
+            app:fragment="TabHomeFragment"
+            app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
+
+        <com.martin.snframework.widgets.tab.XMTabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Live Chat"
+            android:textColor="#f5c8ba"
+            app:fragment="TabLiveChatFragment"
+            app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
+
+    </com.martin.snframework.widgets.tab.XMTabBar>
+</LinearLayout>

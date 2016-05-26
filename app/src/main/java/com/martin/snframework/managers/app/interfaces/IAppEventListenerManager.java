@@ -1,5 +1,7 @@
 package com.martin.snframework.managers.app.interfaces;
 
+import android.content.Intent;
+
 import com.sn.interfaces.SNAppEventListener;
 
 import java.util.HashMap;
@@ -28,7 +30,7 @@ public interface IAppEventListenerManager {
      * @param key
      * @return
      */
-    void fire(String key, HashMap<String, Object> args, boolean isRemove);
+    void fire(String key, Intent intent, boolean isRemove);
 
     /**
      * 执行
@@ -36,7 +38,7 @@ public interface IAppEventListenerManager {
      * @param key
      * @return
      */
-    void fire(String key, HashMap<String, Object> args);
+    void fire(String key, Intent intent);
 
     /**
      * 执行
