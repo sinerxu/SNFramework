@@ -7,6 +7,7 @@ import com.martin.snframework.R;
 import com.martin.snframework.controllers.injects.UserViewInject;
 import com.sn.annotation.SNInjectElement;
 import com.sn.core.SNPullRefreshManager;
+import com.sn.dialog.SNImageBrowserDialog;
 import com.sn.interfaces.SNAdapterOnItemClickListener;
 import com.sn.interfaces.SNAppEventListener;
 import com.sn.interfaces.SNPullRefreshManagerListener;
@@ -41,6 +42,7 @@ public class PullToRefreshActivity extends BaseActivity {
         actions.add("移除事件");
         actions.add("Tab");
         actions.add("Progress Bar");
+        actions.add("图片浏览器");
         SNPullRefreshManager.create(svMain, new SNPullRefreshManagerListener() {
             @Override
             public void onRefresh(SNPullRefreshManager manager) {
@@ -85,6 +87,18 @@ public class PullToRefreshActivity extends BaseActivity {
                             startActivityAnimate(TabMainActivity.class);
                         if (holder.getPos() == 5)
                             startActivityAnimate(ProgressBarActivity.class);
+                        if (holder.getPos() == 6) {
+                            ArrayList<String> urls = new ArrayList<String>();
+                            urls.add("http://img0.imgtn.bdimg.com/it/u=4048200091,3296984835&fm=21&gp=0.jpg");
+                            urls.add("http://img1.ph.126.net/IuICAN2Z9KW0MCYIO4y7eg==/6598226452889083211.jpg");
+                            urls.add("http://pic23.nipic.com/20120910/7341593_224514826000_2.jpg");
+                            urls.add("http://pic41.nipic.com/20140505/6099952_121948164122_2.jpg");
+                            SNImageBrowserDialog imageBrowserDialog = new SNImageBrowserDialog($.getContext());
+                            imageBrowserDialog.setUrls(urls);
+                            imageBrowserDialog.setDefaultShow(1);
+                            imageBrowserDialog.show();
+                        }
+
                     }
                 });
             }

@@ -56,14 +56,18 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity
+            android:name=".controllers.activitys.ImageBrowserActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait">
 
+        </activity>
         <activity
             android:name=".controllers.activitys.ProgressBarActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:screenOrientation="portrait">
 
         </activity>
-
 
 
     </application>

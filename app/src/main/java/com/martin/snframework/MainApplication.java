@@ -21,8 +21,8 @@ public class MainApplication extends SNApplication implements
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        $.util.logInfo(MainApplication.class, "uncaughtException");
-        System.exit(0);
+        //$.util.logInfo(MainApplication.class, "uncaughtException");
+        //System.exit(0);
     }
 
 }
