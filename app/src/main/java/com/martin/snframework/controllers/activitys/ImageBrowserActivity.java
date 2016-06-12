@@ -36,7 +36,6 @@ public class ImageBrowserActivity extends BaseActivity {
         elements = new ArrayList<SNElement>();
         for (String url : urls) {
             SNElement elem = $.create(new ImageView(this));
-
             elem.image(url, new SNOnLoadImageFinishListener() {
                 @Override
                 public void onFinish(Bitmap bitmap) {

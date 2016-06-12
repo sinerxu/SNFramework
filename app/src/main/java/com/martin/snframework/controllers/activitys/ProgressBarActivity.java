@@ -33,7 +33,7 @@ public class ProgressBarActivity extends BaseActivity {
 
         //ivAvatar.image($.readBitMap(R.drawable.avatar));
 
-        ivAvatar.image("http://f.hiphotos.baidu.com/image/h%3D200/sign=f3f6ab70cc134954611eef64664f92dd/dcc451da81cb39db1bd474a7d7160924ab18302e.jpg", R.drawable.avatar_def);
+        // ivAvatar.image("http://f.hiphotos.baidu.com/image/h%3D200/sign=f3f6ab70cc134954611eef64664f92dd/dcc451da81cb39db1bd474a7d7160924ab18302e.jpg", R.drawable.avatar_def);
 
     }
 

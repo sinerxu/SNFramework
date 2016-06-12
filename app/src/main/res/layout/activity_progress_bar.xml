@@ -12,8 +12,8 @@
         android:id="@+id/ivAvatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:circle="true"
-        app:circleBorder="3dp" />
+
+        app:image="@drawable/avatar" />
 
     <ProgressBar
         android:id="@+id/pbStyle1"

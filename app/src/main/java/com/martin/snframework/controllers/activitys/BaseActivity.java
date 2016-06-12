@@ -26,6 +26,15 @@ public class BaseActivity extends SNNavigationSlidingActivity {
     SystemBarTintManager tintManager;
     boolean isInject = false;
 
+
+    public int onLayout() {
+        return 0;
+    }
+
+    public void onInitNavBar() {
+
+    }
+
     public static void restoreAnimateType() {
         animateType = ANIMATE_TYPE;
     }
@@ -45,6 +54,31 @@ public class BaseActivity extends SNNavigationSlidingActivity {
         tintManager.setNavigationBarTintEnabled(true);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setCurrentAnimateType();
+        int layout = onLayout();
+        if (layout != 0) {
+            $.contentView(onLayout());
+        }
+        onInitNavBar();
+    }
+
+    public void loadBaiduAD() {
+//        configManager = ManagerFactory.instance($).createConfigManager();
+//        configManager.getConfig(new AsyncManagerListener() {
+//            @Override
+//            public void onResult(AsyncManagerResult result) {
+//                if (result.isSuccess()) {
+//                    ConfigModel model = result.getResult(ConfigModel.class);
+//                    if (model.isShowAD()) {
+//                        SNElement ad = BaiduAd.instance($).banner();
+//                        SNElement container = getAdContainer();
+//                        if (ad != null && container != null) container.add(ad);
+//                    }
+//                } else {
+//                    toast("配置数据获取失败");
+//                }
+//            }
+//        });
+
     }
 
     @Override
@@ -86,13 +120,32 @@ public class BaseActivity extends SNNavigationSlidingActivity {
      * 加载导航条
      */
     public void showNavBar() {
-        tintManager.setTintResource(R.color.nav_bg_color);
+        tintManager.setTintResource(R.color.nav_bg_color_common);
         if (!isLoadNavBar) {
-            loadNavBar($.px(38), R.color.nav_bg_color);
+            loadNavBar($.dimenResId(R.dimen.nav_height), R.color.nav_bg_color_common);
             isLoadNavBar = true;
         }
         navTitleBar.visible($.SN_UI_VISIBLE);
     }
+
+    public void showNavBar(int color) {
+        tintManager.setTintResource(color);
+        if (!isLoadNavBar) {
+            loadNavBar($.dimenResId(R.dimen.nav_height), color);
+            isLoadNavBar = true;
+        }
+        navTitleBar.visible($.SN_UI_VISIBLE);
+    }
+
+    public void showNavBar(int tintColor, int bg) {
+        tintManager.setTintColor(tintColor);
+        if (!isLoadNavBar) {
+            loadNavBarResId(R.dimen.nav_height, bg);
+            isLoadNavBar = true;
+        }
+        navTitleBar.visible($.SN_UI_VISIBLE);
+    }
+
 
     public void hideNavBar() {
         navTitleBar.visible($.SN_UI_NONE);

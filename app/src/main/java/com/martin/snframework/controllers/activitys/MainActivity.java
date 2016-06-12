@@ -21,7 +21,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         $.contentView(R.layout.activity_main, this);
         UserModel userModel = new UserModel($);
         userModel.fromJson("{\"m\":\"Martin Xu\",\"a\":24}");
