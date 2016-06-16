@@ -22,7 +22,6 @@ public class BaseModel implements Serializable, Cloneable {
         this.$ = _$;
     }
 
-
     public HashMap<String, String> toBody() {
         HashMap<String, String> hashMap = new HashMap<String, String>();
         Class c = getClass();

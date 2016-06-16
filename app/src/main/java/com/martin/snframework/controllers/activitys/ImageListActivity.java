@@ -22,27 +22,17 @@ import java.util.List;
  * Created by xuhui on 16/5/18.
  */
 public class ImageListActivity extends BaseActivity {
-
-
     @SNInjectElement(id = R.id.lvTest)
     SNElement lvTest;
     @SNInjectElement(id = R.id.svMain)
     SNElement svMain;
-
-
     SNPullRefreshManager<TopicModel> pullRefreshManager;
-
     ITopicManager topicManager;
-
     int pageSize = 20;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         $.contentView(R.layout.activity_imagelist);
-
         topicManager = ManagerFactory.instance($).createTopicManager();
         SNPullRefreshManager.create(svMain, pageSize, new SNPullRefreshManagerListener() {
             @Override
@@ -76,8 +66,6 @@ public class ImageListActivity extends BaseActivity {
             }
         });
     }
-
-
     void loadTopic(final boolean isRefresh, final boolean isOpenLoadding) {
         if (isOpenLoadding) $.openLoading();
         topicManager.getTopics(pullRefreshManager.getPage(), pullRefreshManager.getPageSize(), new AsyncManagerListener() {
@@ -101,5 +89,4 @@ public class ImageListActivity extends BaseActivity {
             }
         });
     }
-
 }
