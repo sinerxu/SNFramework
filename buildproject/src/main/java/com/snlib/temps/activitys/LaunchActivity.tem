@@ -1,0 +1,31 @@
+package {packageName}.controllers.activitys;
+
+import android.os.Bundle;
+import android.view.KeyEvent;
+
+import {packageName}.R;
+import com.sn.activity.SNActivity;
+import com.sn.interfaces.SNThreadDelayedListener;
+
+/**
+ * Created by xuhui on 16/7/14.
+ */
+public class LaunchActivity extends SNActivity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setBackgroundDrawable($.drawableResId(R.drawable.launch));
+        $.util.threadDelayed(1000, new SNThreadDelayedListener() {
+            @Override
+            public void onFinish() {
+                $.startActivity(LoginActivity.class, $.SN_ANIMATE_ACTIVITY_SCALE);
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
+}

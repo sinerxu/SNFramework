@@ -1,0 +1,54 @@
+package {packageName}.managers.app.impls;
+
+import {packageName}.cores.configs.AppPropConfig;
+import {packageName}.managers.BaseManager;
+import {packageName}.managers.app.interfaces.IAppPropManager;
+import {packageName}.models.UserModel;
+import com.sn.main.SNManager;
+
+/**
+ * Created by xuhui on 16/8/3.
+ */
+
+public class AppPropManager extends BaseManager implements IAppPropManager {
+    public AppPropManager(SNManager _$) {
+        super(_$);
+    }
+
+    @Override
+    public void removeCurrentUser() {
+        String key = getKey(AppPropConfig.APP_PROP_CURRENT_USER, false);
+        if ($.propExist(key))
+            $.removeProp(key);
+    }
+
+    @Override
+    public void setCurrentUser(UserModel user) {
+        $.prop(getKey(AppPropConfig.APP_PROP_CURRENT_USER, false), user);
+    }
+
+    @Override
+    public UserModel getCurrentUser() {
+        return $.prop(UserModel.class, getKey(AppPropConfig.APP_PROP_CURRENT_USER, false));
+    }
+
+    //region 内部
+    private String getKey(String key, boolean bindUser) {
+        if (bindUser) {
+            UserModel user = getCurrentUser();
+            if (user == null) {
+                return key;
+            } else {
+                return key + "_" + user.getId();
+            }
+        } else {
+            return key;
+        }
+    }
+
+    private String getKey(String key) {
+        return getKey(key, true);
+    }
+    //endregion
+
+}

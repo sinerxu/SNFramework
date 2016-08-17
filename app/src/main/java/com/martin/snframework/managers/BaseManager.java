@@ -13,7 +13,6 @@ public class BaseManager {
         this.$ = _$;
     }
 
-
     public void callBackSuccessResult(AsyncManagerListener _onResult, Object result) {
         callBack(_onResult, AsyncManagerResult.createSuccessResult(result));
     }

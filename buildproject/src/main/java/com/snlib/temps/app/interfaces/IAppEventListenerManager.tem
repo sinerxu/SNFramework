@@ -1,0 +1,48 @@
+package {packageName}.managers.app.interfaces;
+
+import android.content.Intent;
+
+import com.sn.interfaces.SNAppEventListener;
+
+/**
+ * Created by xuhui on 16/1/24.
+ */
+public interface IAppEventListenerManager {
+    /**
+     * 移除
+     *
+     * @param key
+     */
+    void remove(String key);
+
+    /**
+     * 设置
+     *
+     * @param key
+     */
+    void set(String key, SNAppEventListener appEventListener);
+
+    /**
+     * 执行
+     *
+     * @param key
+     * @return
+     */
+    void fire(String key, Intent intent, boolean isRemove);
+
+    /**
+     * 执行
+     *
+     * @param key
+     * @return
+     */
+    void fire(String key, Intent intent);
+
+    /**
+     * 执行
+     *
+     * @param key
+     * @return
+     */
+    void fire(String key);
+}

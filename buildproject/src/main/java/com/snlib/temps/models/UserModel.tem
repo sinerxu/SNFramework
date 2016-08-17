@@ -1,0 +1,29 @@
+package {packageName}.models;
+
+import  {packageName}.annotation.ApiMapping;
+import  {packageName}.annotation.BodyMapping;
+import com.sn.main.SNManager;
+
+/**
+ * Created by xuhui on 16/1/24.
+ */
+public class UserModel extends BaseModel {
+
+
+    public UserModel(SNManager _$) {
+        super(_$);
+    }
+
+
+    @BodyMapping("userId")
+    @ApiMapping("uid")
+    String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}

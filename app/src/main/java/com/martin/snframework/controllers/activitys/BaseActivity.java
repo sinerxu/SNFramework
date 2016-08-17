@@ -24,7 +24,6 @@ public class BaseActivity extends SNNavigationSlidingActivity {
     int currentAnimateType = -1;
     final static int TOAST_DURATION = 3000;
     SystemBarTintManager tintManager;
-    boolean isInject = false;
 
 
     public int onLayout() {

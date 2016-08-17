@@ -11,11 +11,11 @@
         app:style="customer">
 
         <com.martin.snframework.widgets.tab.XMTabItem
+            android:name="com.martin.snframework.controllers.fragments.TabHomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Kitchen"
             android:textColor="#f5c8ba"
-            app:fragment="TabKitChenFragment"
             app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
 
         <com.martin.snframework.widgets.tab.XMTabItem
@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:text="My Cart"
             android:textColor="#f5c8ba"
-            app:fragment="TabMyCartFragment"
+            android:name="com.martin.snframework.controllers.fragments.TabMyCartFragment"
+
             app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
 
         <com.martin.snframework.widgets.tab.XMTabItem
@@ -31,7 +32,7 @@
             android:layout_height="match_parent"
             android:text="Home"
             android:textColor="#f5c8ba"
-            app:fragment="TabHomeFragment"
+            android:name="com.martin.snframework.controllers.fragments.TabHomeFragment"
             app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
 
         <com.martin.snframework.widgets.tab.XMTabItem
@@ -39,7 +40,7 @@
             android:layout_height="match_parent"
             android:text="Live Chat"
             android:textColor="#f5c8ba"
-            app:fragment="TabLiveChatFragment"
+            android:name="com.martin.snframework.controllers.fragments.TabLiveChatFragment"
             app:selected_color="#fff"></com.martin.snframework.widgets.tab.XMTabItem>
 
     </com.martin.snframework.widgets.tab.XMTabBar>

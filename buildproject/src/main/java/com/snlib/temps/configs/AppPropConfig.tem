@@ -1,0 +1,9 @@
+package {packageName}.cores.configs;
+
+/**
+ * Created by xuhui on 16/8/3.
+ */
+
+public class AppPropConfig {
+    public static final String APP_PROP_CURRENT_USER = "APP_PROP_CURRENT_USER";
+}

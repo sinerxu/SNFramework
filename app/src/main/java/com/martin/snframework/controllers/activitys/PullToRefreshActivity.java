@@ -2,7 +2,9 @@ package com.martin.snframework.controllers.activitys;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.martin.snframework.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -11,6 +13,7 @@ import com.martin.snframework.controllers.injects.UserViewInject;
 import com.martin.snframework.dialogs.CustomerLoadingDialog;
 import com.martin.snframework.widgets.alert.CustomerAlert;
 import com.sn.annotation.SNInjectElement;
+import com.sn.core.SNHeaderManager;
 import com.sn.core.SNLoadingBuilder;
 import com.sn.core.SNLoadingDialogManager;
 import com.sn.core.SNPullRefreshManager;
@@ -18,15 +21,21 @@ import com.sn.dialog.SNImageBrowserDialog;
 import com.sn.interfaces.SNAdapterOnItemClickListener;
 import com.sn.interfaces.SNAppEventListener;
 import com.sn.interfaces.SNOnClickListener;
+import com.sn.interfaces.SNOnHttpResultListener;
 import com.sn.interfaces.SNPullRefreshManagerListener;
 import com.sn.interfaces.SNThreadDelayedListener;
 import com.sn.main.SNConfig;
 import com.sn.main.SNElement;
 import com.sn.models.SNAdapterViewInject;
+import com.sn.models.SNHeader;
 import com.sn.postting.alert.SNAlert;
 import com.sn.postting.alert.SNAlertBuilder;
+import com.soundcloud.android.crop.*;
+import com.soundcloud.android.crop.CropImageActivity;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -80,6 +89,13 @@ public class PullToRefreshActivity extends BaseActivity {
         actions.add("自定义alert");
         actions.add("弹出loading");
         actions.add("自定义loading");
+        actions.add("还原alert");
+        actions.add("还原loading");
+        actions.add("图片裁剪");
+        actions.add("获取api的cookie");
+        actions.add("算命工具请求测试");
+        actions.add("设置cookie访问网站");
+        actions.add("改变颜色");
         SNPullRefreshManager.create(svMain, new SNPullRefreshManagerListener() {
             @Override
             public void onRefresh(SNPullRefreshManager manager) {
@@ -142,37 +158,78 @@ public class PullToRefreshActivity extends BaseActivity {
                         if (holder.getPos() == 7)
                             $.alert("hello！");
                         if (holder.getPos() == 8) {
-                            SNConfig.SN_UI_ALERT_STYLE = SNAlert.ALERT_TYPE_CUSTOMER;
                             SNAlertBuilder.setCustomerAlert(CustomerAlert.class);
                             $.alert("自定义alert");
                         }
 
-                        if (holder.getPos() == 9)
-                        {
-
+                        if (holder.getPos() == 9) {
                             $.openLoading();
                             $.util.threadDelayed(1000, new SNThreadDelayedListener() {
                                 @Override
                                 public void onFinish() {
+                                    $.closeLoading();
+                                }
+                            });
+                        }
+                        if (holder.getPos() == 10) {
+                            SNLoadingBuilder.setCustomerLoadingDialog(CustomerLoadingDialog.class);
+                            $.alert("设置成功！");
+                        }
+                        if (holder.getPos() == 11) {
+                            SNAlertBuilder.resetCustomerAlert();
+                            $.alert("还原alert成功！");
+                        }
+                        if (holder.getPos() == 12) {
+                            SNLoadingBuilder.resetCustomerLoadingDialog();
+                            $.alert("还原loading成功！");
+                        }
+                        if (holder.getPos() == 13) {
+                            startActivityAnimate(com.martin.snframework.controllers.activitys.CropImageActivity.class);
+                        }
+                        if (holder.getPos() == 14) {
+
+                            $.get("http://192.168.1.109:86/mobile/login?username=smm&password=123456", new SNOnHttpResultListener() {
+                                @Override
+                                public void onSuccess(int statusCode, ArrayList<SNHeader> headers, String result) {
+                                    String value = SNHeaderManager.findByName(headers, "Set-Cookie");
+                                    HashMap<String, String> req_headers = new HashMap<String, String>();
+                                    req_headers.put("Cookie", value);
+                                    $.get("http://192.168.1.109:86/mobile/getmenus", req_headers, new SNOnHttpResultListener() {
+                                        @Override
+                                        public void onSuccess(int statusCode, ArrayList<SNHeader> headers, String result) {
+                                            $.toast(result, 2000);
+                                        }
+
+                                        @Override
+                                        public void onFailure(int statusCode, ArrayList<SNHeader> headers, String result) {
+
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onFailure(int statusCode, ArrayList<SNHeader> headers, String result) {
 
                                 }
                             });
                         }
-
-                        if (holder.getPos() == 10) {
-                            SNConfig.SN_UI_LOADING_STYLE = SNLoadingDialogManager.LOADING_TYPE_CUSTOMER;
-                            SNLoadingBuilder.setCustomerLoadingDialog(CustomerLoadingDialog.class);
-                            $.openLoading();
+                        if (holder.getPos() == 15) {
+                            startActivityAnimate(MingToolsActivity.class);
                         }
-
+                        if (holder.getPos() == 16) {
+                            startActivityAnimate(CookieWebActivity.class);
+                        }
+                        if (holder.getPos() == 17) {
+                            gvTest.backgroundColor($.util.colorParse("#12000000"));
+                        }
                     }
                 });
             }
         });
     }
 
-    void initSliding() {
 
+    void initSliding() {
         $.slidingMode(SlidingMenu.LEFT);
         $.slidingLeftView(R.layout.view_sliding_left);
         $.slidingOffset($.px(70));

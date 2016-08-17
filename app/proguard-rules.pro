@@ -38,5 +38,9 @@
 -keepattributes Signature
 -dontwarn **.R.**
 -keep class **.R.** {*;}
--dontwarn com.sn.**
--keep class com.sn.** { *; }
+-dontwarn com.martin.snframework.controllers.injects.**
+-keep class com.martin.snframework.controllers.injects.** { *; }
+-dontwarn com.martin.snframework.controllers.fragments.**
+-keep class com.martin.snframework.controllers.fragments.** { *; }
+#-dontwarn com.sn.**
+#-keep class com.sn.** { *; }

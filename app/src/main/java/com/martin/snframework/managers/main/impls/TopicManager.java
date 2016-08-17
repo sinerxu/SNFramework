@@ -3,16 +3,17 @@ package com.martin.snframework.managers.main.impls;
 import com.martin.snframework.managers.BaseManager;
 import com.martin.snframework.managers.async.listeners.AsyncManagerListener;
 import com.martin.snframework.managers.main.interfaces.ITopicManager;
-import com.martin.snframework.models.BaseModel;
 import com.martin.snframework.models.TopicModel;
 import com.sn.interfaces.SNOnHttpResultListener;
 import com.sn.main.SNManager;
+import com.sn.models.SNHeader;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by xuhui on 16/5/18.
@@ -26,9 +27,10 @@ public class TopicManager extends BaseManager implements ITopicManager {
     @Override
     public void getTopics(int page, int pageSize, final AsyncManagerListener asyncManagerListener) {
         String url = $.util.strFormat("http://www.jiamingbaobao.com/api/v1/Forum/GetTopicsPage?id=1&pageIndex={0}&pageSize={1}", page, pageSize);
+
         $.get(url, new SNOnHttpResultListener() {
             @Override
-            public void onSuccess(int statusCode, String result) {
+            public void onSuccess(int statusCode, ArrayList<SNHeader> headers, String result) {
                 try {
                     JSONObject jsonObject = $.util.jsonParse(result);
                     if ($.util.jsonNotIsNullOrNoHas(jsonObject, "Items")) {
@@ -49,7 +51,7 @@ public class TopicManager extends BaseManager implements ITopicManager {
             }
 
             @Override
-            public void onFailure(int statusCode, String result) {
+            public void onFailure(int statusCode, ArrayList<SNHeader> headers, String result) {
                 callBackError(asyncManagerListener);
             }
         });

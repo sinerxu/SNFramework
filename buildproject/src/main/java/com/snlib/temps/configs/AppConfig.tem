@@ -1,0 +1,18 @@
+package {packageName}.cores.configs;
+
+import {packageName}.BuildConfig;
+import com.sn.core.SNUtility;
+
+/**
+ * Created by xuhui on 16/1/24.
+ */
+public class AppConfig {
+    public static final boolean DEBUG = BuildConfig.DEBUG;
+    public static final String APP_JS_OBJECT_NAME = "SN";
+
+
+    public static void initAppConfig() {
+        //日志开关
+        SNUtility.instance().logSwitch(DEBUG);
+    }
+}

@@ -1,0 +1,16 @@
+package {packageName};
+
+import {packageName}.cores.configs.AppConfig;
+import com.sn.application.SNApplication;
+
+/**
+ * Created by xuhui on 15/10/31.
+ */
+public class MainApplication extends SNApplication {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //初始化app配置
+        AppConfig.initAppConfig();
+    }
+}

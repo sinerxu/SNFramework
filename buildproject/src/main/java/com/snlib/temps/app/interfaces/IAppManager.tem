@@ -1,0 +1,35 @@
+package {packageName}.managers.app.interfaces;
+
+/**
+ * 核心Manager，管理app的各种操作
+ */
+public interface IAppManager {
+
+
+
+
+    /**
+     * 从手机系统浏览器打开网页
+     *
+     * @param url
+     */
+    void openUrl(String url);
+
+
+
+    /**
+     * 调用app内的浏览器内打开网页
+     *
+     * @param url
+     */
+    void openUrlInApp(String url);
+
+
+    /**
+     * 加载html
+     *
+     * @param html
+     */
+    void openHtml(String html);
+
+}

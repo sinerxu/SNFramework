@@ -1,0 +1,33 @@
+package {packageName}.managers.app.impls;
+
+import android.webkit.JavascriptInterface;
+
+import {packageName}.managers.BaseManager;
+import {packageName}.managers.ManagerFactory;
+import {packageName}.managers.app.interfaces.IAppManager;
+import {packageName}.managers.app.interfaces.IJavaScriptManager;
+import com.sn.main.SNManager;
+
+/**
+ * Created by xuhui on 16/1/7.
+ */
+
+public class JavaScriptManager extends BaseManager implements IJavaScriptManager {
+
+
+    IAppManager appManager;
+
+    public JavaScriptManager(SNManager _$) {
+        super(_$);
+        appManager = ManagerFactory.instance($).createAppManager();
+    }
+
+
+    @JavascriptInterface
+    @Override
+    public void openUrlInApp(String url) {
+        appManager.openUrlInApp(url);
+    }
+
+
+}

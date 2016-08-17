@@ -34,7 +34,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controllers.activitys.PullToRefreshActivity">
+        <activity
+            android:name=".controllers.activitys.PullToRefreshActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -65,11 +68,32 @@
         <activity
             android:name=".controllers.activitys.ProgressBarActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
 
 
+        <activity
+            android:name=".controllers.activitys.CookieWebActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"></activity>
+
+
+        <activity
+            android:name=".controllers.activitys.MingToolsActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.soundcloud.android.crop.CropImageActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme" />
+
+        <activity
+            android:name=".controllers.activitys.CropImageActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,0 +1,66 @@
+package {packageName}.managers.app.impls;
+
+import android.content.Intent;
+
+import {packageName}.controllers.activitys.BaseActivity;
+import {packageName}.managers.BaseManager;
+import {packageName}.managers.ManagerFactory;
+import {packageName}.managers.app.interfaces.IAppManager;
+import {packageName}.managers.app.interfaces.IIntentManager;
+import com.sn.main.SNManager;
+
+/**
+ * Created by xuhui on 16/1/24.
+ */
+public class AppManager extends BaseManager implements IAppManager {
+    public AppManager(SNManager _$) {
+        super(_$);
+        intentManager = ManagerFactory.instance($).createIntentManager();
+    }
+
+    IIntentManager intentManager;
+
+
+
+    /**
+     * 从手机系统浏览器打开网页
+     *
+     * @param url
+     */
+    @Override
+    public void openUrl(String url) {
+        Intent intent = intentManager.instanceSystemBrowserIntent(url);
+        $.startActivity(intent);
+    }
+
+    /**
+     * 调用app内的浏览器内打开网页
+     *
+     * @param url
+     */
+    @Override
+    public void openUrlInApp(String url) {
+        Intent intent = intentManager.instanceInAppBrowserUrlIntent(url);
+        BaseActivity baseActivity = $.getActivity(BaseActivity.class);
+        if (baseActivity != null)
+            baseActivity.startActivityAnimate(intent);
+        else
+            $.startActivity(intent);
+    }
+
+
+    /**
+     * 加载html
+     *
+     * @param html
+     */
+    @Override
+    public void openHtml(String html) {
+        Intent intent = intentManager.instanceInAppBrowserHtmlIntent(html);
+        BaseActivity baseActivity = $.getActivity(BaseActivity.class);
+        if (baseActivity != null)
+            baseActivity.startActivityAnimate(intent);
+        else
+            $.startActivity(intent);
+    }
+}

@@ -12,6 +12,10 @@ public class AppConfig {
     public static final String APP_DOWNLOAD_URL = "http://www.91qiming.net/m/";
     public static final String APP_SHARE_URL = APP_DOWNLOAD_URL;
 
+
+
+
+
     public static void initAppConfig() {
         //日志开关
         SNUtility.instance().logSwitch(DEBUG);

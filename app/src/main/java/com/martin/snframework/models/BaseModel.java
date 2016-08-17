@@ -16,7 +16,12 @@ import java.util.HashMap;
  */
 public class BaseModel implements Serializable, Cloneable {
 
-    SNManager $;
+
+    transient SNManager $;
+
+    public void set$(SNManager _$) {
+        this.$ = _$;
+    }
 
     public BaseModel(SNManager _$) {
         this.$ = _$;

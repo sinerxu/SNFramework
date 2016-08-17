@@ -1,0 +1,38 @@
+package {packageName}.controllers.activitys;
+
+import android.os.Bundle;
+
+import {packageName}.R;
+import com.sn.annotation.SNInjectElement;
+import com.sn.interfaces.SNOnClickListener;
+import com.sn.main.SNElement;
+
+/**
+ * Created by xuhui on 16/7/14.
+ */
+public class LoginActivity extends BaseActivity {
+
+    public LoginActivity() {
+        setAnimateType($.SN_ANIMATE_ACTIVITY_SCALE);
+    }
+
+
+    @Override
+    public int onLayout() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+
+    @Override
+    public void onInitNavBar() {
+        super.onInitNavBar();
+        showNavBar();
+        navTitleBar.showNavTitle("登录");
+    }
+}

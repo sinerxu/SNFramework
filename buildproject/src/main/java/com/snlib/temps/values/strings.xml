@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">{appname}</string>
+    <string name="alert_title">提示：</string>
+    <string name="alert_ok">确认</string>
+    <string name="confirm_title">确认提示：</string>
+    <string name="confirm_ok">确认</string>
+    <string name="confirm_cancel">取消</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+</resources>

@@ -1,0 +1,127 @@
+package {packageName}.controllers.activitys;
+
+import android.animation.ValueAnimator;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+
+import {packageName}.R;
+import {packageName}.cores.configs.AppConfig;
+import {packageName}.managers.ManagerFactory;
+import {packageName}.managers.app.interfaces.IJavaScriptManager;
+import com.sn.annotation.SNInjectElement;
+import com.sn.interfaces.SNOnClickListener;
+import com.sn.main.SNElement;
+
+/**
+ * Created by xuhui on 4/22/16.
+ */
+public class WebBrowserActivity extends BaseActivity {
+    public final static String STRING_EXTRA_URL = "STRING_EXTRA_URL";
+    public final static String STRING_EXTRA_HTML = "STRING_EXTRA_HTML";
+    @SNInjectElement(id = R.id.viewProgress)
+    SNElement viewProgress;
+
+    @SNInjectElement(id = R.id.wvMain)
+    SNElement wvMain;
+
+    IJavaScriptManager javaScriptManager;
+    ValueAnimator animation;
+
+
+    @Override
+    public int onLayout() {
+        return R.layout.actvity_web_browser;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initManager();
+
+
+        Intent intent = getIntent();
+        String url = intent.getStringExtra(WebBrowserActivity.STRING_EXTRA_URL);
+
+        if (url != null)
+            $.util.logDebug(WebBrowserActivity.class, "url=" + url);
+        String html = intent.getStringExtra(WebBrowserActivity.STRING_EXTRA_HTML);
+        wvMain.webAllowOpenUrlInApp();
+        wvMain.webResponsive();
+        wvMain.jsInterface(javaScriptManager, AppConfig.APP_JS_OBJECT_NAME);
+        if ($.util.strIsNotNullOrEmpty(url)) {
+
+            wvMain.loadUrl(url);
+        } else {
+            wvMain.loadHtml(html);
+        }
+        viewProgress.width(0);
+
+        wvMain.webChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (animation != null) animation.cancel();
+                if (newProgress == 0) {
+                    viewProgress.width($.px(0));
+                    newProgress = 5;
+                }
+                float percent = (float) newProgress / 100.00f;
+                int w = (int) ($.displaySize().getWidth() * percent);
+                animation = ValueAnimator.ofInt(viewProgress.width(), w);
+                animation.setDuration(500);
+                animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        int v = (int) animation.getAnimatedValue();
+                        viewProgress.width(v);
+                        if (v == $.displaySize().getWidth()) {
+                            viewProgress.width($.px(0));
+                        }
+                    }
+                });
+                animation.start();
+                if (newProgress == 100) {
+                    navTitleBar.showNavTitle($.util.strCut(view.getTitle(), 26));
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onInitNavBar() {
+        super.onInitNavBar();
+        showNavBar();
+        navTitleBar.showNavTitle("努力加载中...");
+        navTitleBar.showNavLeftButton(R.drawable.icon_close, new SNOnClickListener() {
+            @Override
+            public void onClick(SNElement snElement) {
+                confirmFinish();
+            }
+        });
+    }
+
+    void initManager() {
+        javaScriptManager = ManagerFactory.instance($).createJavaScriptManager();
+    }
+
+    public void webViewBack() {
+        WebView wv = wvMain.toView(WebView.class);
+        if (wv.canGoBack()) {
+            wv.goBack();
+        } else {
+            confirmFinish();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            webViewBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+}
