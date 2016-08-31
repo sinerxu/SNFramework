@@ -38,4 +38,3 @@ proguard/
 build/
 /*/build/
 .gradle/
-/snlibrary
