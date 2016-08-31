@@ -13,9 +13,9 @@ public class ProjectMain {
 
 
     //region config
-    static final String APPNAME = "贝乐Yeah";
-    static final String PACKAGENAME = "com.jiaming.beileyeah";
-    static final String PATH = "/Users/xuhui/Documents/Work/AndroidStudio_Workspace/beileyeah_android";
+    static final String APPNAME = "佣乐购";
+    static final String PACKAGENAME = "com.mati.yonglegou";
+    static final String PATH = "/Users/xuhui/Documents/Work/AndroidStudio_Workspace/GitStack/Yonglegou_android";
     static final String TEMPPATH = "/Users/xuhui/Documents/Work/AndroidStudio_Workspace/SNFramework/buildproject/src/main/java/com/snlib/temps";
     //endregion
 

@@ -37,6 +37,7 @@ public class ImageItemInject extends BaseInject {
         }, new SNOnGetImageUrlListener() {
             @Override
             public String onGetRealUrl() {
+                //这里一定要使用getData(TopicModel.class) 获取真实的对象
                 return getAvatar();
             }
         });

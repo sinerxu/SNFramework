@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.sn.controlers.SNWebView
+        android:id="@+id/wvMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f00"></com.sn.controlers.SNWebView>
+</LinearLayout>

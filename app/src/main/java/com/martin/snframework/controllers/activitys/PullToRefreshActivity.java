@@ -96,6 +96,8 @@ public class PullToRefreshActivity extends BaseActivity {
         actions.add("算命工具请求测试");
         actions.add("设置cookie访问网站");
         actions.add("改变颜色");
+        actions.add("打开网页");
+        actions.add("淘宝客助手");
         SNPullRefreshManager.create(svMain, new SNPullRefreshManagerListener() {
             @Override
             public void onRefresh(SNPullRefreshManager manager) {
@@ -221,6 +223,12 @@ public class PullToRefreshActivity extends BaseActivity {
                         }
                         if (holder.getPos() == 17) {
                             gvTest.backgroundColor($.util.colorParse("#12000000"));
+                        }
+                        if (holder.getPos() == 18) {
+                            startActivityAnimate(WebBrowserActivity.class);
+                        }
+                        if (holder.getPos() == 19) {
+                            startActivityAnimate(WebBrowserActivity.class);
                         }
                     }
                 });

@@ -94,6 +94,17 @@
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".controllers.activitys.TaoBaokeActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".controllers.activitys.WebBrowserActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>
