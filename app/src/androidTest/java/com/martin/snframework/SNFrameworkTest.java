@@ -21,9 +21,8 @@ public class SNFrameworkTest extends AndroidTestCase {
     }
 
     public void testDES() throws Exception {
-
         // CryptoTools des = new CryptoTools("123123123");
         //Assert.assertEquals(des.encode("中华人民共和国万岁").toUpperCase(), "5ZYVAKYVT70HX94ILXRAF7DTMMM48SVX1HJLYPTL1R8=");
-        Assert.assertEquals(SNUtility.instance().desEncrypt("中华人民共万岁", "123123123"), "2pt1bZ0NwEgrZu2GFZVuya4CULh4pszPs/V+dOsQnXKhm6GZwViCcwXl4q/R+fqZ5aVAJWpbgg3H5EizEZ5uJQ==");
+        Assert.assertEquals(SNUtility.instance().desEncrypt("6F60EE9161444F36D187B6BC8081FDAA_4297F44B13955235245B2497399D7A93", "jmdeskey"), "jplxLR8J8pXAL9n0kwNmizgU+7Ds19bJaO0RmuNL8Vz5CaNvAWNcSSX+Y9BPpFaK4QHHVzNwsaP6ILhUYn49u9NaY6KA91U1");
     }
 }

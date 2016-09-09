@@ -11,6 +11,8 @@ import com.martin.snframework.managers.main.interfaces.ITopicManager;
 import com.martin.snframework.models.TopicModel;
 import com.sn.annotation.SNInjectElement;
 import com.sn.core.SNPullRefreshManager;
+import com.sn.core.SNRefreshManager;
+import com.sn.core.SNXPullRefreshManager;
 import com.sn.interfaces.SNAdapterOnItemClickListener;
 import com.sn.interfaces.SNPullRefreshManagerListener;
 import com.sn.main.SNElement;
@@ -26,29 +28,29 @@ public class ImageListActivity extends BaseActivity {
     SNElement lvTest;
     @SNInjectElement(id = R.id.svMain)
     SNElement svMain;
-    SNPullRefreshManager<TopicModel> pullRefreshManager;
+    SNRefreshManager<TopicModel> pullRefreshManager;
     ITopicManager topicManager;
     int pageSize = 20;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         $.contentView(R.layout.activity_imagelist);
         topicManager = ManagerFactory.instance($).createTopicManager();
-        SNPullRefreshManager.create(svMain, pageSize, new SNPullRefreshManagerListener() {
+
+        $.createRefreshManager(svMain, pageSize, new SNPullRefreshManagerListener() {
             @Override
-            public void onRefresh(SNPullRefreshManager manager) {
-                //刷新
+            public void onRefresh(SNRefreshManager manager) {
                 loadTopic(true, false);
             }
 
             @Override
-            public void onLoadMore(SNPullRefreshManager manager) {
-                //加载更多
+            public void onLoadMore(SNRefreshManager manager) {
                 loadTopic(false, false);
             }
 
             @Override
-            public void onCreate(SNPullRefreshManager manager) {
+            public void onCreate(SNRefreshManager manager) {
                 pullRefreshManager = manager;
                 lvTest.bindListAdapter(manager, R.layout.adapter_imageitem, ImageItemInject.class);
                 loadTopic(true, true);
@@ -66,6 +68,7 @@ public class ImageListActivity extends BaseActivity {
             }
         });
     }
+
     void loadTopic(final boolean isRefresh, final boolean isOpenLoadding) {
         if (isOpenLoadding) $.openLoading();
         topicManager.getTopics(pullRefreshManager.getPage(), pullRefreshManager.getPageSize(), new AsyncManagerListener() {

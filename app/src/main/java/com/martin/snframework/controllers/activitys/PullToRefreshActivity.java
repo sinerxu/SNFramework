@@ -17,6 +17,7 @@ import com.sn.core.SNHeaderManager;
 import com.sn.core.SNLoadingBuilder;
 import com.sn.core.SNLoadingDialogManager;
 import com.sn.core.SNPullRefreshManager;
+import com.sn.core.SNRefreshManager;
 import com.sn.dialog.SNImageBrowserDialog;
 import com.sn.interfaces.SNAdapterOnItemClickListener;
 import com.sn.interfaces.SNAppEventListener;
@@ -47,7 +48,7 @@ public class PullToRefreshActivity extends BaseActivity {
     SNElement gvTest;
     @SNInjectElement(id = R.id.svMain)
     SNElement svMain;
-    SNPullRefreshManager<String> pullRefreshManager;
+    SNRefreshManager<String> pullRefreshManager;
     List<String> actions;
 
     @Override
@@ -98,9 +99,11 @@ public class PullToRefreshActivity extends BaseActivity {
         actions.add("改变颜色");
         actions.add("打开网页");
         actions.add("淘宝客助手");
+
+
         SNPullRefreshManager.create(svMain, new SNPullRefreshManagerListener() {
             @Override
-            public void onRefresh(SNPullRefreshManager manager) {
+            public void onRefresh(SNRefreshManager manager) {
                 $.util.threadDelayed(1000, new SNThreadDelayedListener() {
                     @Override
                     public void onFinish() {
@@ -111,12 +114,12 @@ public class PullToRefreshActivity extends BaseActivity {
             }
 
             @Override
-            public void onLoadMore(final SNPullRefreshManager manager) {
+            public void onLoadMore(SNRefreshManager manager) {
 
             }
 
             @Override
-            public void onCreate(SNPullRefreshManager manager) {
+            public void onCreate(SNRefreshManager manager) {
                 pullRefreshManager = manager;
                 manager.setData(actions);
                 gvTest.bindListAdapter(manager, R.layout.adapter_user, UserViewInject.class);

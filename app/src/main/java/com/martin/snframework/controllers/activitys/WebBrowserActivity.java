@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.martin.snframework.R;
 import com.sn.annotation.SNInjectElement;
+import com.sn.controlers.SNWebView;
 import com.sn.main.SNElement;
 
 /**
@@ -11,7 +12,6 @@ import com.sn.main.SNElement;
  */
 
 public class WebBrowserActivity extends BaseActivity {
-
 
     @SNInjectElement(id = R.id.wvMain)
     SNElement wvMain;
@@ -24,6 +24,15 @@ public class WebBrowserActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        wvMain.loadUrl("http://weixin003.jiamingbaobao.com/app/index.php?i=2&c=entry&do=shop&m=ewei_shop&uid=3");
+        final SNWebView outView = wvMain.toView(SNWebView.class);
+        outView.setRefreshEnable(true);
+        outView.setOnPullRefreshListener(new SNWebView.SNOnPullRefreshListener() {
+            @Override
+            public void onRefresh() {
+                wvMain.loadUrl("http://beile.jiamingbaobao.com/");
+            }
+        });
+        outView.setAutoRefresh(true);
+       // wvMain.loadUrl("http://weixin003.jiamingbaobao.com/app/index.php?i=2&c=entry&do=shop&m=ewei_shop&uid=3");
     }
 }

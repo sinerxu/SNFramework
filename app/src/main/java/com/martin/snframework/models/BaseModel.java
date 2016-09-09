@@ -4,18 +4,21 @@ import com.martin.snframework.annotation.ApiMapping;
 import com.martin.snframework.annotation.BodyMapping;
 import com.sn.main.SNManager;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by xuhui on 16/1/20.
  */
 public class BaseModel implements Serializable, Cloneable {
-
 
     transient SNManager $;
 
@@ -26,6 +29,7 @@ public class BaseModel implements Serializable, Cloneable {
     public BaseModel(SNManager _$) {
         this.$ = _$;
     }
+
 
     public HashMap<String, String> toBody() {
         HashMap<String, String> hashMap = new HashMap<String, String>();
@@ -102,6 +106,25 @@ public class BaseModel implements Serializable, Cloneable {
                                 field.set(this, Float.parseFloat(jsonObject.get(fieldName).toString()));
                             } else if ($.util.refClassIsEqual(field.getType(), double.class)) {
                                 field.set(this, Double.parseDouble(jsonObject.get(fieldName).toString()));
+                            } else if ($.util.refClassIsEqual(field.getType(), List.class)) {
+                                JSONArray arrays = jsonObject.getJSONArray(fieldName);
+                                List<BaseModel> list = (List) field.get(this);
+                                Type fc = field.getGenericType();
+                                if (fc == null) continue;
+                                Class baseModelClass = null;
+                                if (fc instanceof ParameterizedType) {
+                                    ParameterizedType pt = (ParameterizedType) fc;
+                                    baseModelClass = (Class) pt.getActualTypeArguments()[0];
+                                }
+                                if (baseModelClass == null) continue;
+                                for (int i = 0; i < arrays.length(); i++) {
+                                    BaseModel baseModel = (BaseModel) baseModelClass.getConstructor(SNManager.class).newInstance($);
+                                    baseModel.set$($);
+                                    baseModel.fromJson(arrays.getJSONObject(i));
+                                    list.add(baseModel);
+                                }
+
+
                             }
                         } catch (Exception ex) {
 

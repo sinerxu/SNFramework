@@ -2,13 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    android:orientation="vertical"
-
-
-    >
-
-    <com.sn.controlers.pullrefresh.SNPullRefreshLayout
+    <com.sn.controlers.pullrefresh.SNRefreshLayout
         android:id="@+id/svMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,6 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></com.sn.controlers.SNListView>
 
-    </com.sn.controlers.pullrefresh.SNPullRefreshLayout>
+    </com.sn.controlers.pullrefresh.SNRefreshLayout>
 
 </LinearLayout>

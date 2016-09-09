@@ -6,6 +6,7 @@ import com.martin.snframework.R;
 import com.martin.snframework.controllers.injects.UserViewInject;
 import com.sn.annotation.SNInjectElement;
 import com.sn.core.SNPullRefreshManager;
+import com.sn.core.SNRefreshManager;
 import com.sn.interfaces.SNAdapterOnItemClickListener;
 import com.sn.interfaces.SNOnHttpResultListener;
 import com.sn.interfaces.SNPullRefreshManagerListener;
@@ -32,7 +33,7 @@ public class MingToolsActivity extends BaseActivity {
     SNElement gvTest;
     @SNInjectElement(id = R.id.svMain)
     SNElement svMain;
-    SNPullRefreshManager<String> pullRefreshManager;
+    SNRefreshManager<String> pullRefreshManager;
     List<String> actions;
 
     @Override
@@ -58,9 +59,11 @@ public class MingToolsActivity extends BaseActivity {
         actions = new ArrayList<String>();
         actions.add("姓名配对");
         actions.add("八字合婚");
+
+
         SNPullRefreshManager.create(svMain, new SNPullRefreshManagerListener() {
             @Override
-            public void onRefresh(SNPullRefreshManager manager) {
+            public void onRefresh(SNRefreshManager manager) {
                 $.util.threadDelayed(1000, new SNThreadDelayedListener() {
                     @Override
                     public void onFinish() {
@@ -71,12 +74,12 @@ public class MingToolsActivity extends BaseActivity {
             }
 
             @Override
-            public void onLoadMore(SNPullRefreshManager manager) {
+            public void onLoadMore(SNRefreshManager manager) {
 
             }
 
             @Override
-            public void onCreate(SNPullRefreshManager manager) {
+            public void onCreate(SNRefreshManager manager) {
                 pullRefreshManager = manager;
                 manager.setData(actions);
                 gvTest.bindListAdapter(manager, R.layout.adapter_user, UserViewInject.class);
